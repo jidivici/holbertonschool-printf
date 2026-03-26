@@ -6,7 +6,6 @@
 
 int _putchar(char c);
 int _strlen(char *str);
-int sum_them_all(const unsigned int n, ...);
 
 /**
  * struct op_s - Structure pour associer un caractère à une fonction
@@ -22,7 +21,7 @@ typedef struct op_s
 	void (*f)(va_list *);
 } op_t;
 
-void print_all(const char * const format, ...);
+int _printf(const char * const format, ...);
 void print_char(va_list *ap);
 void print_int(va_list *ap);
 void print_double(va_list *ap);
