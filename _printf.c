@@ -80,13 +80,13 @@ int _printf(const char *format, ...)
 		else
 		{
 			i++;
-//			if (format[i] == '%')
+/*			if (format[i] == '%')
 //			{
 //				write(1, "%", 1);
 //				count++;
 //				i++;
 //				continue;
-//			}
+			} */
 			while (print_flag[j].op)
 			{
 				if (format[i] == print_flag[j].op)
