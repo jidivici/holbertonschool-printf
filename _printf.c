@@ -12,7 +12,8 @@
  */
 void print_char(va_list *ap)
 {
-	printf("%c", va_arg(*ap, int));
+	char c = va_arg(*ap, int);
+	write(1, &c, 1);
 }
 
 /**
@@ -45,10 +46,13 @@ void print_double(va_list *ap)
 void print_string(va_list *ap)
 {
 	char *str = va_arg(*ap, char *);
+	int len = 0;
 
 	if (str == NULL)
 		str = "(nil)";
-	printf("%s", str);
+	do {
+		write(1, str, 1);
+	} while (*str++);
 }
 /**
  * _printf - custom printf function
@@ -74,7 +78,6 @@ int _printf(const char *format, ...)
 
 	while (format && format[i])
 	{
-		/* Si ce n'est pas un % → print normal */
 		if (format[i] != '%')
 		{
 			write(1, &format[i], 1);
@@ -82,11 +85,9 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			i++; // passer le %
-
-			/* gérer %% */
-			if (format[i] == '%')
+			i++;
 			{
+			if (format[i] == '%')
 				write(1, "%", 1);
 				count++;
 				i++;
