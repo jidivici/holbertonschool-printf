@@ -3,73 +3,54 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 /**
- * print_char - Affiche un caractère
- * @ap: Liste d'arguments variadiques contenant le caractère à afficher
+ * get_function - Executes the function associated with a format specifier
+ * @c: format specifier character
+ * @ap: variadic arguments list
  *
- * Récupère un int depuis la va_list et l'affiche comme un caractère.
+ * This function searches for the corresponding function linked to the
+ * given specifier and calls it with the provided variadic arguments.
  */
-void print_char(va_list *ap)
+void get_function(char c, va_list ap)
 {
-	printf("%c", va_arg(*ap, int));
-}
-
-/**
- * print_int - Affiche un entier
- * @ap: Liste d'arguments variadiques contenant l'entier à afficher
- *
- * Récupère un int depuis la va_list et l'affiche.
- */
-void print_int(va_list *ap)
-{
-	printf("%d", va_arg(*ap, int));
-}
-/**
- * print_double - Affiche un nombre à virgule flottante
- * @ap: Liste d'arguments variadiques contenant le double à afficher
- *
- * Récupère un double depuis la va_list et l'affiche.
- */
-void print_double(va_list *ap)
-{
-	printf("%f", va_arg(*ap, double));
-}
-/**
- * print_string - Affiche une chaîne de caractères
- * @ap: Liste d'arguments variadiques contenant la chaîne à afficher
- *
- * Récupère un char* depuis la va_list et l'affiche.
- * Si la chaîne est NULL, affiche "(nil)".
- */
-void print_string(va_list *ap)
-{
-	char *str = va_arg(*ap, char *);
-
-	if (str == NULL)
-		str = "(nil)";
-	printf("%s", str);
-}
-/**
- * print_all - Affiche n'importe quel type de données selon le format
- * @format: Chaîne de caractères représentant le format à afficher
- *          ('c' = char, 'i' = int, 'f' = double, 's' = string)
- *
- * Cette fonction accepte un nombre variable d'arguments et les affiche
- * selon le format indiqué. Les chaînes NULL sont remplacées par "(nil)".
- */
-void print_all(const char * const format, ...)
-{
-	int i = 0, j;
-	char *sep = "";
-	va_list ap;
-
+	int j = 0;
 	op_t print_flag[] = {
 		{'c', print_char},
 		{'i', print_int},
+		{'d', print_int},
 		{'f', print_double},
 		{'s', print_string},
+		{'%', print_pourcent},
 		{0, NULL}
 	};
+	while (print_flag[j].op)
+	{
+		if (c == print_flag[j].op)
+		{
+			print_flag[j].f(&ap);
+			break;
+		}
+		j++;
+	}
+}
+
+/**
+ * _printf - Produces output according to a format string
+ * @format: string containing the format specifiers
+ *
+ * This function parses the format string and prints characters to the
+ * standard output. When a '%' is encountered, it calls the appropriate
+ * function associated with the specifier to print the corresponding
+ * argument from the variadic list.
+ *
+ * Return: the number of characters printed
+ */
+int _printf(const char *format, ...)
+{
+	int i = 0, count = 0;
+	va_list ap;
+
 	va_start(ap, format);
 	while (format && format[i])
 	{
@@ -81,26 +62,10 @@ void print_all(const char * const format, ...)
 		else
 		{
 			i++;
-			{
-			if (format[i] == '%')
-				write(1, "%", 1);
-				count++;
-				i++;
-				continue;
-			}
-			j = 0;
-			while (print_flag[j].op)
-			{
-				if (format[i] == print_flag[j].op)
-				{
-					print_flag[j].f(&ap);
-					break;
-				}
-				j++;
-			}
+			get_function(format[i], ap);
 		}
 		i++;
 	}
 	va_end(ap);
-	printf("\n");
+	return (count);
 }

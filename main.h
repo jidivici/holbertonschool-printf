@@ -2,34 +2,13 @@
 #define MAIN_H
 
 #include <stdio.h>
-
-int _putchar(char c);
-int _strlen(char *str);
-
 /**
- * struct op_s - Structure pour associer un caractère à une fonction
- * @op: Le caractère représentant le type à afficher
- * @f: Pointeur de fonction pointe avec le va list adequate.
+ * struct op_s - Associates a format specifier with a function
+ * @op: format specifier character (e.g. 'c', 's', 'd')
+ * @f: pointer to the function that handles the specifier
  *
- * Cette structure permet de lier un type de donnée print
- * dans des fonctions variadiques comme print_all.
- */
-typedef struct op_s
-{
-	char op;
-	void (*f)(va_list *);
-} op_t;
-
-
-void print_string(va_list *ap);
-
-/**
- * struct op_s - Structure pour associer un caractère à une fonction
- * @op: Le caractère représentant le type à afficher
- * @f: Pointeur de fonction pointe avec le va list adequate.
- *
- * Cette structure permet de lier un type de donnée print
- * dans des fonctions variadiques comme print_all.
+ * This structure is used to map each format specifier to its
+ * corresponding printing function.
  */
 typedef struct op_s
 {

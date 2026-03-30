@@ -3,9 +3,9 @@ _printf is a custom implementation of the standard C printf function.
 It formats and prints data to the standard output.
 
 ## ⚙️ Prototype
-    
+
 int _printf(const char *format, ...);
-    
+
 
 ## 🔤 Supported Specifiers
 
@@ -26,4 +26,3 @@ int _printf(const char *format, ...);
 ## 🔧 Compilation
 
 gcc -Wall -Werror -Wextra -pedantic *.c -o printf
-    
