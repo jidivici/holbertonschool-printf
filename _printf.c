@@ -1,5 +1,4 @@
 #include "main.h"
-#include <unistd.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -51,24 +50,26 @@ void print_string(va_list *ap)
 	printf("%s", str);
 }
 /**
- * _printf - custom printf function
- * @format: format string
+ * print_all - Affiche n'importe quel type de données selon le format
+ * @format: Chaîne de caractères représentant le format à afficher
+ *          ('c' = char, 'i' = int, 'f' = double, 's' = string)
  *
- * Return: number of characters printed
+ * Cette fonction accepte un nombre variable d'arguments et les affiche
+ * selon le format indiqué. Les chaînes NULL sont remplacées par "(nil)".
  */
-int _printf(const char *format, ...)
+void print_all(const char * const format, ...)
 {
-	int i = 0, j = 0, count = 0;
+	int i = 0, j;
+	char *sep = "";
 	va_list ap;
+
 	op_t print_flag[] = {
 		{'c', print_char},
 		{'i', print_int},
-		{'d', print_int},
 		{'f', print_double},
-		{'%', print_string},
+		{'s', print_string},
 		{0, NULL}
 	};
-
 	va_start(ap, format);
 	while (format && format[i])
 	{
@@ -80,6 +81,14 @@ int _printf(const char *format, ...)
 		else
 		{
 			i++;
+			{
+			if (format[i] == '%')
+				write(1, "%", 1);
+				count++;
+				i++;
+				continue;
+			}
+			j = 0;
 			while (print_flag[j].op)
 			{
 				if (format[i] == print_flag[j].op)
@@ -93,5 +102,5 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(ap);
-	return (count);
+	printf("\n");
 }
