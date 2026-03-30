@@ -65,7 +65,7 @@ int _printf(const char *format, ...)
 		{'i', print_int},
 		{'d', print_int},
 		{'f', print_double},
-		{'s', print_string},
+		{'%', print_string},
 		{0, NULL}
 	};
 
@@ -80,13 +80,6 @@ int _printf(const char *format, ...)
 		else
 		{
 			i++;
-//			if (format[i] == '%')
-//			{
-//				write(1, "%", 1);
-//				count++;
-//				i++;
-//				continue;
-//			}
 			while (print_flag[j].op)
 			{
 				if (format[i] == print_flag[j].op)
