@@ -23,8 +23,9 @@ typedef struct op_s
 
 int _printf(const char * const format, ...);
 void print_char(va_list *ap);
-void print_int(va_list *ap);
+int print_int(va_list *ap);
 void print_double(va_list *ap);
 void print_string(va_list *ap);
+void _printf(const char *format, ...);
 
 #endif
