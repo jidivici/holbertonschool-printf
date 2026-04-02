@@ -53,9 +53,10 @@ int print_percent(va_list *ap)
  * print_string - Prints a string
  * @ap: pointer to the variadic arguments list
  *
- * This function retrieves a string from the variadic arguments
- * and prints it character by character. If the string is NULL,
- * it prints "(null)".
+ * Retrieves a string from the va_list and prints it.
+ * If the string is NULL, prints "(null)".
+ *
+ * Return: Number of characters printed
  */
 int print_string(va_list *ap)
 {
