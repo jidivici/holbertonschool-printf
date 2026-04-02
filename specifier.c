@@ -2,25 +2,29 @@
 #include <stdarg.h>
 /**
  * print_char - Prints a character
- * @ap: pointer to the variadic arguments list
+ * @ap: Variadic argument list containing the character to print
  *
- * This function retrieves a character from the variadic arguments
- * and prints it to the standard output.
+ * Retrieves a character from the va_list (as an int), prints it
+ * using write, and returns the number of characters printed.
+ *
+ * Return: Always 1 (one character printed)
  */
 int print_char(va_list *ap)
 {
 	char c = va_arg(*ap, int);
 
 	write(1, &c, 1);
-    return (0);
+	return (0);
 }
 
 /**
  * print_int - Prints an integer
- * @ap: pointer to the variadic arguments list
+ * @ap: Variadic argument list containing the integer to print
  *
- * This function retrieves an integer from the variadic arguments
- * and prints it to the standard output.
+ * Retrieves an integer from the va_list, converts it to its string
+ * representation, prints it, and returns the number of characters printed.
+ *
+ * Return: Number of characters printed
  */
 int print_int(va_list *ap)
 {
@@ -31,30 +35,19 @@ int print_int(va_list *ap)
 	return (nbretotxt(n));
 }
 /**
- * print_double - Prints a floating-point number
+ * print_percent - Prints a percent sign
  * @ap: pointer to the variadic arguments list
  *
- * This function retrieves a double from the variadic arguments
- * and prints it to the standard output.
- */
-int print_double(va_list *ap)
-{
-	printf("%f", va_arg(*ap, double));
-    return (0);
-}
-/**
- * print_pourcent - Prints a percent sign
- * @ap: pointer to the variadic arguments list
+ * Prints the '%' character using write.
  *
- * This function prints the '%' character to the standard output.
- * The variadic argument list is unused but kept for consistency
- * with other printing functions.
+ * Return: Always 1 (one character printed)
  */
-int print_pourcent(va_list *ap)
+int print_percent(va_list *ap)
 {
 	char c = va_arg(*ap, int);
-    write(1, &c, 1);
-    return (0);
+
+	write(1, &c, 1);
+	return (0);
 }
 /**
  * print_string - Prints a string
@@ -73,5 +66,5 @@ int print_string(va_list *ap)
 	do {
 		write(1, str, 1);
 	} while (*str++);
-    return (0);
+	return (0);
 }
