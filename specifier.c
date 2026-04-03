@@ -61,13 +61,13 @@ int print_percent(va_list *ap)
 int print_string(va_list *ap)
 {
 	char *str = va_arg(*ap, char *);
-    int count = 0;
+	int count = 0;
 
 	if (str == NULL)
 		str = "(nil)";
 	do {
 		write(1, str, 1);
-        count++;
+		count++;
 	} while (*str++);
 	return (count);
 }
