@@ -22,7 +22,7 @@ typedef struct op_s
 } op_t;
 
 int _printf(const char * const format, ...);
-int get_function(char c, va_list ap, int count);
+int get_function(char c, va_list *ap);
 int print_char(va_list *ap);
 int print_int(va_list *ap);
 int print_string(va_list *ap);
