@@ -62,7 +62,7 @@ int get_function(char c, va_list *ap)
 		{'x', print_hex_lower},
 		{'u', print_unsigned},
 		{'o', print_octa},
-            	{'b', print_bin},
+		{'b', print_bin},
 		{0, NULL}
 	};
 	while (print_flag[j].op)

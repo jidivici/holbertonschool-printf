@@ -70,7 +70,7 @@ int print_b_eight(unsigned int n)
 	return (count);
 }
 /**
- * print_binary_f - prints an unsigned integer in base 2 (binary)
+ * print_bin_f - prints an unsigned integer in base 2 (binary)
  * @n: unsigned integer to be converted and printed
  *
  * Description:

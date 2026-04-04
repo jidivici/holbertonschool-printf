@@ -62,7 +62,7 @@ int print_octa(va_list *ap)
 }
 
 /**
- * print_binary - Prints in binary
+ * print_bin - Prints in binary
  * @ap: pointer to the variadic arguments list
  *
  * Retrieves a string from the va_list and prints it.
