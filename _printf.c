@@ -107,9 +107,8 @@ int _printf(const char *format, ...)
 		i++;
 		if (format[i] == '\0')
 		{
-			write(1, "%", 1);
-			count++;
-			break;
+			va_end(ap);
+			return (-1);
 		}
 		count += get_function(format[i], &ap);
 		i++;
