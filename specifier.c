@@ -43,9 +43,9 @@ int print_int(va_list *ap)
  */
 int print_percent(va_list *ap)
 {
-	char c = va_arg(*ap, int);
+	(void) ap;
 
-	write(1, &c, 1);
+	write(1, "%", 1);
 	return (1);
 }
 /**
@@ -63,10 +63,12 @@ int print_string(va_list *ap)
 	int count = 0;
 
 	if (str == NULL)
-		str = "(nil)";
-	do {
+		str = "(null)";
+	while (*str)
+	{
 		write(1, str, 1);
+		str++;
 		count++;
-	} while (*str++);
+	}
 	return (count);
 }

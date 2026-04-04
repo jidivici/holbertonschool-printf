@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stdio.h>
 /**
  * nbretotxt - Converts an integer to a string
  * @n: Integer to convert
@@ -56,7 +57,7 @@ int get_function(char c, va_list *ap)
 		{'i', print_int},
 		{'d', print_int},
 		{'s', print_string},
-        {'%', print_percent},
+        	{'%', print_percent},
 		{0, NULL}
 	};
 	while (print_flag[j].op)
@@ -65,7 +66,7 @@ int get_function(char c, va_list *ap)
 			return (print_flag[j].f(ap));
 		j++;
 	}
-		return (0);
+	return (0);
 }
 
 /**
@@ -95,16 +96,23 @@ int _printf(const char *format, ...)
 		else
 		{
 			i++;
-            printed = get_function(format[i], &ap);
-			if (printed == 0)
+			if (format[i] == '\0')
+			{
+				write(1, "%", 1);
+				count++;
+				va_end(ap);
+                                return (count);
+			}
+			printed = get_function(format[i], &ap);
+			if (printed > 0)
+				count += printed;
+			else
 			{
 				write(1, "%", 1);
 				write(1, &format[i], 1);
 				count += 2;
 			}
-			else
-				count += printed;
-			}
+		}
 		i++;
 	}
 	va_end(ap);
