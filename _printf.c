@@ -43,7 +43,7 @@ int nbretotxt(int n)
  * get_function - Executes the function matching a format specifier
  * @c: Format specifier
  * @ap: Variadic arguments list
- * @count: Number of printed characters
+ *
  *
  * Finds the corresponding function for a specifier and executes it.
  *
@@ -57,7 +57,7 @@ int get_function(char c, va_list *ap)
 		{'i', print_int},
 		{'d', print_int},
 		{'s', print_string},
-        	{'%', print_percent},
+		{'%', print_percent},
 		{0, NULL}
 	};
 	while (print_flag[j].op)
@@ -101,7 +101,7 @@ int _printf(const char *format, ...)
 				write(1, "%", 1);
 				count++;
 				va_end(ap);
-                                return (count);
+				return (count);
 			}
 			printed = get_function(format[i], &ap);
 			if (printed > 0)
