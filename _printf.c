@@ -73,6 +73,7 @@ int get_function(char c, va_list *ap)
 
 /**
  * _printf - Produces output according to a format string
+ * @format: the format string to parse
  *
  * This function parses the format string and prints characters to the
  * standard output. When a '%' is encountered, it calls the appropriate
