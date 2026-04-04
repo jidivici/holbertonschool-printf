@@ -82,36 +82,32 @@ int get_function(char c, va_list *ap)
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, count = 0, printed = 0;
 	va_list ap;
+	int i = 0, count = 0, printed = 0;
 
+	if (format == NULL)
+		return (-1);
 	va_start(ap, format);
-	while (format && format[i])
+	while (format[i])
 	{
 		if (format[i] != '%')
 		{
 			write(1, &format[i], 1);
 			count++;
+			i++;
+			continue;
 		}
+		i++;
+		if (format[i] == '\0')
+			return (count);
+		printed = get_function(format[i], &ap);
+		if (printed > 0)
+			count += printed;
 		else
 		{
-			i++;
-			if (format[i] == '\0')
-			{
-				write(1, "%", 1);
-				count++;
-				va_end(ap);
-				return (count);
-			}
-			printed = get_function(format[i], &ap);
-			if (printed > 0)
-				count += printed;
-			else
-			{
-				write(1, "%", 1);
-				write(1, &format[i], 1);
-				count += 2;
-			}
+			write(1, "%", 1);
+			write(1, &format[i], 1);
+			count += 2;
 		}
 		i++;
 	}
