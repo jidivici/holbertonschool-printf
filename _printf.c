@@ -100,6 +100,11 @@ int _printf(const char *format, ...)
 			continue;
 		}
 		i++;
+        	if (!format)
+                {
+                	va_end(ap);
+                	return (-1);
+                }
 		if (format[i] == '\0')
 			return (count);
 		count += get_function(format[i], &ap);
