@@ -66,12 +66,13 @@ int get_function(char c, va_list *ap)
 			return (print_flag[j].f(ap));
 		j++;
 	}
-	return (0);
+	write(1, "%", 1);
+	write(1, &c, 1);
+	return (2);
 }
 
 /**
  * _printf - Produces output according to a format string
- * @format: string containing the format specifiers
  *
  * This function parses the format string and prints characters to the
  * standard output. When a '%' is encountered, it calls the appropriate
@@ -83,7 +84,7 @@ int get_function(char c, va_list *ap)
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int i = 0, count = 0, printed = 0;
+	int i = 0, count = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -100,15 +101,7 @@ int _printf(const char *format, ...)
 		i++;
 		if (format[i] == '\0')
 			return (count);
-		printed = get_function(format[i], &ap);
-		if (printed > 0)
-			count += printed;
-		else
-		{
-			write(1, "%", 1);
-			write(1, &format[i], 1);
-			count += 2;
-		}
+		count += get_function(format[i], &ap);
 		i++;
 	}
 	va_end(ap);
