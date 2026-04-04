@@ -74,6 +74,6 @@ int print_bin(va_list *ap)
 {
 	unsigned int n = va_arg(*ap, unsigned int);
 
-	return (print_binary_f(n));
+	return (print_bin_f(n));
 }
 
