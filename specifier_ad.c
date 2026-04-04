@@ -12,6 +12,7 @@
 int print_hex_upper(va_list *ap)
 {
 	unsigned int n = va_arg(*ap, unsigned int);
+
 	return (print_hex(n));
 }
 /**
@@ -26,6 +27,7 @@ int print_hex_upper(va_list *ap)
 int print_hex_lower(va_list *ap)
 {
 	unsigned int n = va_arg(*ap, unsigned int);
+
 	return (print_hex_min(n));
 }
 /**
@@ -40,6 +42,7 @@ int print_hex_lower(va_list *ap)
 int print_unsigned(va_list *ap)
 {
 	unsigned int n = va_arg(*ap, unsigned int);
+
 	return (print_unsigned_nbretotext(n));
 }
 /**
@@ -54,5 +57,23 @@ int print_unsigned(va_list *ap)
 int print_octa(va_list *ap)
 {
 	unsigned int n = va_arg(*ap, unsigned int);
+
 	return (print_b_eight(n));
 }
+
+/**
+ * print_binary - Prints in binary
+ * @ap: pointer to the variadic arguments list
+ *
+ * Retrieves a string from the va_list and prints it.
+ * If the string is NULL, prints "(null)".
+ *
+ * Return: Number of characters printed
+ */
+int print_binary(va_list *ap)
+{
+	unsigned int n = va_arg(*ap, unsigned int);
+
+	return (print_binary_f(n));
+}
+

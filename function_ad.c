@@ -69,3 +69,28 @@ int print_b_eight(unsigned int n)
 	count++;
 	return (count);
 }
+/**
+ * print_binary_f - prints an unsigned integer in base 2 (binary)
+ * @n: unsigned integer to be converted and printed
+ *
+ * Description:
+ * This function recursively converts the number into binary (base 2)
+ * and prints it using the write system call.
+ * It processes the most significant bits first by dividing the number
+ * by 2 until the base case is reached.
+ *
+ * Return: number of characters printed
+ */
+int print_binary_f(unsigned int n)
+{
+	int count = 0;
+	char c;
+
+	if (n >= 2)
+		count += print_binary(n / 2);
+
+	c = (n % 2) + '0';
+	write(1, &c, 1);
+	count++;
+	return (count);
+}
