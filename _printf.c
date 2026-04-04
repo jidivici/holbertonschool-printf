@@ -106,7 +106,11 @@ int _printf(const char *format, ...)
 		}
 		i++;
 		if (format[i] == '\0')
-			return (count);
+		{
+			write(1, "%", 1);
+			count++;
+			break;
+		}
 		count += get_function(format[i], &ap);
 		i++;
 	}
