@@ -58,6 +58,10 @@ int get_function(char c, va_list *ap)
 		{'d', print_int},
 		{'s', print_string},
 		{'%', print_percent},
+		{'X', print_hex_upper},
+		{'x', print_hex_lower},
+		{'u', print_unsigned},
+		{'o', print_octa},
 		{0, NULL}
 	};
 	while (print_flag[j].op)

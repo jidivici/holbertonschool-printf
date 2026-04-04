@@ -27,5 +27,12 @@ int print_int(va_list *ap);
 int print_string(va_list *ap);
 int print_percent(va_list *ap);
 int nbretotxt(int n);
-
+int print_hex_upper(va_list *ap);
+int print_hex(unsigned int n);
+int print_hex_lower(va_list *ap);
+int print_hex_min(unsigned int n);
+int print_unsigned(va_list *ap);
+int print_unsigned_nbretotext(unsigned int n);
+int print_octa(va_list *ap);
+int print_b_eight(unsigned int n);
 #endif
