@@ -81,13 +81,13 @@ int print_b_eight(unsigned int n)
  *
  * Return: number of characters printed
  */
-int print_binary_f(unsigned int n)
+int print_bin_f(unsigned int n)
 {
 	int count = 0;
 	char c;
 
 	if (n >= 2)
-		count += print_binary(n / 2);
+		count += print_bin_f(n / 2);
 
 	c = (n % 2) + '0';
 	write(1, &c, 1);

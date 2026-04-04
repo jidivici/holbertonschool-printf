@@ -35,7 +35,7 @@ int print_unsigned(va_list *ap);
 int print_unsigned_nbretotext(unsigned int n);
 int print_octa(va_list *ap);
 int print_b_eight(unsigned int n);
-int print_binary_f(unsigned int n);
-int print_binary(va_list *ap);
+int print_bin_f(unsigned int n);
+int print_bin(va_list *ap);
 
 #endif

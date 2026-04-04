@@ -70,7 +70,7 @@ int print_octa(va_list *ap)
  *
  * Return: Number of characters printed
  */
-int print_binary(va_list *ap)
+int print_bin(va_list *ap)
 {
 	unsigned int n = va_arg(*ap, unsigned int);
 
